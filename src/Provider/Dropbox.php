@@ -75,7 +75,7 @@ class Dropbox extends AbstractProvider
     {
         if (isset($data['error'])) {
             throw new IdentityProviderException(
-                $data['error'] ?: $response->getReasonPhrase(),
+                $data['error_summary'],
                 $response->getStatusCode(),
                 $response
             );
@@ -118,7 +118,7 @@ class Dropbox extends AbstractProvider
     public function getAuthorizationUrl(array $options = [])
     {
         return parent::getAuthorizationUrl(array_merge([
-            'approval_prompt' => []
+            'approval_prompt' => [],
         ], $options));
     }
 }
